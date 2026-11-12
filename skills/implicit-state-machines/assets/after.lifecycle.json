@@ -1,0 +1,22 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": { "title": "<Machine> explicit: one reducer, typed states", "output": "<machine>-after.html", "quality_profile": "showcase", "locale": "en" },
+  "mainPath": ["a", "b", "c"],
+  "states": [
+    { "id": "a", "type": "start", "label": "<State>", "step": "01" },
+    { "id": "b", "type": "active", "label": "<State>", "sublabel": "{ <data> }", "step": "02" },
+    { "id": "c", "type": "success", "label": "<State>", "sublabel": "{ <data> }", "step": "03" },
+    { "id": "f", "type": "failure", "label": "<Failure>", "sublabel": "{ <data> }" }
+  ],
+  "transitions": [
+    { "from": "a", "to": "b", "label": "<event>" },
+    { "from": "b", "to": "c", "label": "<event>" },
+    { "from": "b", "to": "f", "label": "<event>", "variant": "security" },
+    { "from": "f", "to": "b", "label": "<retry event>", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "One owner", "items": ["<module>: apply(event) → state | TransitionError", "<store>.transition() is the only write path"] },
+    { "dot": "cyan", "title": "Buys", "items": ["<n> predicate copies deleted", "<combination> unrepresentable"] }
+  ]
+}

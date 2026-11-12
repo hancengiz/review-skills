@@ -1,0 +1,21 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": { "title": "<Machine> today: <status> × <columns>", "output": "<machine>-before.html", "quality_profile": "showcase", "locale": "en" },
+  "mainPath": ["s1", "s2", "s3"],
+  "states": [
+    { "id": "s1", "type": "start", "label": "<status>", "sublabel": "<columns>" },
+    { "id": "s2", "type": "active", "label": "“<implicit name>”", "sublabel": "<status> ∧ <column> set", "tag": "implicit" },
+    { "id": "s3", "type": "success", "label": "<status>", "sublabel": "<columns>" },
+    { "id": "odd", "type": "failure", "label": "<combination>", "sublabel": "no CHECK forbids it", "tag": "representable" }
+  ],
+  "transitions": [
+    { "from": "s1", "to": "s2", "label": "<writer>" },
+    { "from": "s2", "to": "s3", "label": "<writer>" },
+    { "from": "s1", "to": "odd", "label": "no CHECK", "variant": "security" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Where the state lives", "items": ["<table>.<status> + <columns>", "<n> status writes in <files>"] },
+    { "dot": "amber", "title": "Re-derived elsewhere", "items": ["<predicate> recomputed in <n> places: <files>"] }
+  ]
+}
